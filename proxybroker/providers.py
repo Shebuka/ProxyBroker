@@ -198,16 +198,15 @@ class Blogspot_com_base(Provider):
 class Blogspot_com(Blogspot_com_base):
     domain = 'blogspot.com'
     domains = [
-        'sslproxies24.blogspot.com',
-        'proxyserverlist-24.blogspot.com',
-        'freeschoolproxy.blogspot.com',
-        'googleproxies24.blogspot.com',
+#        'completely.outdated',
     ]
 
 
 class Blogspot_com_socks(Blogspot_com_base):
     domain = 'blogspot.com^socks'
-    domains = ['www.socks24.org']
+    domains = [
+#        'completely.outdated',
+    ]
 
 
 class Webanetlabs_net(Provider):
@@ -756,10 +755,6 @@ PROVIDERS = [
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
     ),  # 50
     Provider(
-        url='http://proxytime.ru/http',
-        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
-    ),  # 1400
-    Provider(
         url='https://free-proxy-list.net/',
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
     ),  # 300
@@ -771,11 +766,10 @@ PROVIDERS = [
         url='https://t.me/s/proxiesfine',
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
     ),  # 4200
-    Provider(url='https://socks-proxy.net/', proto=('SOCKS4', 'SOCKS5')),  # 80
     Provider(
-        url='http://www.httptunnel.ge/ProxyListForFree.aspx',
-        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
-    ),  # 200
+        url='https://socks-proxy.net/',
+        proto=('SOCKS4', 'SOCKS5')
+    ),  # 80
     Provider(
         url='http://cn-proxy.com/',
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
@@ -802,16 +796,15 @@ PROVIDERS = [
     Proxylistplus_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 450
     Proxylist_me(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 2872
     Foxtools_ru(
-        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'), max_conn=1
+        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
+        max_conn=1
     ),  # noqa; 500
     Gatherproxy_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 3212
     Nntime_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 1050
     Blogspot_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 24800
     Gatherproxy_com_socks(proto=('SOCKS4', 'SOCKS5')),  # noqa; 30
     Blogspot_com_socks(proto=('SOCKS4', 'SOCKS5')),  # noqa; 1486
-    Tools_rosinstrument_com(
-        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')
-    ),  # noqa; 4000
+    Tools_rosinstrument_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 4000
     Tools_rosinstrument_com_socks(proto=('SOCKS4', 'SOCKS5')),  # noqa; 1800
     My_proxy_com(max_conn=2),  # noqa; 1000
     Checkerproxy_net(),  # noqa; 60000
