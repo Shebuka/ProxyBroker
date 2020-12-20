@@ -354,7 +354,7 @@ class Foxtools_ru(Provider):
     async def _pipe(self):
         urls = [
             'http://api.foxtools.ru/v2/Proxy.txt?page=%d' % n
-            for n in range(1, 6)
+            for n in range(1, 3)
         ]
         await self._find_on_pages(urls)
 
@@ -773,6 +773,7 @@ PROVIDERS = [
     Provider(
         url='http://pubproxy.com/api/proxy?limit=20&format=txt',
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
+        max_conn=1,
     ),  # 20
     Proxy_list_org(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 140
     Xseo_in(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 240
