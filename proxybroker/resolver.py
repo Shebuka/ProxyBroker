@@ -117,7 +117,7 @@ class Resolver:
     async def resolve(self, host, port=80, family=None, qtype='A', logging=True):
         """Return resolving IP address(es) from host name."""
         if self.host_is_ip(host):
-            return host
+            return str(ipaddress.ip_address(host))
 
         _host = self._cached_hosts.get(host)
         if _host:
