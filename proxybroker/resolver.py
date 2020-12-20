@@ -118,10 +118,6 @@ class Resolver:
         """Return resolving IP address(es) from host name."""
         if self.host_is_ip(host):
             return host
-        else:
-            _host = str(ipaddress.ip_address(host))
-            if self.host_is_ip(_host):
-                return _host
 
         _host = self._cached_hosts.get(host)
         if _host:
