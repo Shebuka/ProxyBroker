@@ -171,7 +171,7 @@ class Freeproxylists_com(Provider):
     async def _pipe(self):
         exp = r'''href\s*=\s*['"](?P<t>[^'"]*)/(?P<uts>\d{10})[^'"]*['"]'''
         urls = [
-            # 'http://www.freeproxylists.com/socks.html',
+            'http://www.freeproxylists.com/socks.html',
             'http://www.freeproxylists.com/elite.html',
             'http://www.freeproxylists.com/anonymous.html',
         ]
@@ -198,14 +198,14 @@ class Blogspot_com_base(Provider):
 class Blogspot_com(Blogspot_com_base):
     domain = 'blogspot.com'
     domains = [
-#        'completely.outdated',
+        # 'completely.outdated',
     ]
 
 
 class Blogspot_com_socks(Blogspot_com_base):
     domain = 'blogspot.com^socks'
     domains = [
-#        'completely.outdated',
+        # 'completely.outdated',
     ]
 
 
@@ -484,7 +484,7 @@ class Xseo_in(Provider):
 
     async def _pipe(self):
         await self._find_on_page(
-            url='http://xseo.in/proxylist', data={'submit': 1}, method='POST'
+            url='https://xseo.in/proxylist', data={'submit': 1}, method='POST'
         )
 
 
@@ -751,10 +751,6 @@ PROVIDERS = [
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
     ),  # 100
     Provider(
-        url='https://freshfreeproxylist.wordpress.com/',
-        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
-    ),  # 50
-    Provider(
         url='https://free-proxy-list.net/',
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
     ),  # 300
@@ -771,21 +767,9 @@ PROVIDERS = [
         proto=('SOCKS4', 'SOCKS5')
     ),  # 80
     Provider(
-        url='http://cn-proxy.com/',
+        url='http://cn-proxy.com/archives/218',
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
     ),  # 70
-    Provider(
-        url='https://hugeproxies.com/home/',
-        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
-    ),  # 800
-    Provider(
-        url='http://proxy.rufey.ru/',
-        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
-    ),  # 153
-    Provider(
-        url='https://geekelectronics.org/my-servisy/proxy',
-        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
-    ),  # 400
     Provider(
         url='http://pubproxy.com/api/proxy?limit=20&format=txt',
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
@@ -804,14 +788,14 @@ PROVIDERS = [
     Blogspot_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 24800
     Gatherproxy_com_socks(proto=('SOCKS4', 'SOCKS5')),  # noqa; 30
     Blogspot_com_socks(proto=('SOCKS4', 'SOCKS5')),  # noqa; 1486
-    Tools_rosinstrument_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 4000
-    Tools_rosinstrument_com_socks(proto=('SOCKS4', 'SOCKS5')),  # noqa; 1800
+    # Tools_rosinstrument_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 4000
+    # Tools_rosinstrument_com_socks(proto=('SOCKS4', 'SOCKS5')),  # noqa; 1800
     My_proxy_com(max_conn=2),  # noqa; 1000
     Checkerproxy_net(),  # noqa; 60000
     Aliveproxy_com(),  # noqa; 210
-    Freeproxylists_com(),  # noqa; 1338
+    # Freeproxylists_com(),  # noqa; 1338
     Webanetlabs_net(),  # noqa; 5000
-    Maxiproxies_com(),  # noqa; 430
+    # Maxiproxies_com(),  # noqa; 430
     Proxylist_download(),  # noqa; 35590
     # # Bad...
     # http://www.proxylist.ro/
