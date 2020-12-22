@@ -637,8 +637,6 @@ PROVIDERS = [
     Gatherproxy_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 3212
     Nntime_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 1050
     Gatherproxy_com_socks(proto=('SOCKS4', 'SOCKS5')),  # noqa; 30
-    Blogspot_com(proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25')),  # noqa; 24800
-    Blogspot_com_socks(proto=('SOCKS4', 'SOCKS5')),  # noqa; 1486
     My_proxy_com(max_conn=2),  # noqa; 1000
     Checkerproxy_net(),  # noqa; 60000
     Aliveproxy_com(),  # noqa; 210
