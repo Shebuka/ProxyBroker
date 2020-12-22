@@ -57,6 +57,10 @@ class Proxy:
         loop = kwargs.pop('loop', None)
         resolver = kwargs.pop('resolver', Resolver(loop=loop))
         try:
+            splitHost = '.'.join(f'{int(i)}' for i in host.split('.'))
+            if host != splitHost:
+                log.info('%s is different from %s, reparsing' % (host, splitHost))
+                host = splitHost
             _host = await resolver.resolve(host)
             self = cls(_host, *args, **kwargs)
         except (ResolveError, ValueError) as e:
