@@ -105,6 +105,8 @@ class Resolver:
                     ip = await resp.text()
             except asyncio.TimeoutError:
                 pass
+            except Exception:
+                pass
             else:
                 ip = ip.strip()
                 if self.host_is_ip(ip):
