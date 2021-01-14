@@ -2,6 +2,8 @@ import asyncio
 import os
 import re
 import warnings
+import time
+import json
 from base64 import b64decode
 from html import unescape
 from math import sqrt
@@ -537,6 +539,44 @@ class DidsoftHttp(Provider):
         await self._find_on_pages(urls)
 
 
+class Openproxy_space(Provider):
+    domain = 'openproxy.space'
+    _pattern = re.compile(r'\b(?P<ip>(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))'
+                          r':(?:(?![7-9]\d{4})(?!6[6-9]\d{3})(?!65[6-9]\d{2})(?!655[4-9]\d)(?!6553[6-9])(?!0+)(?P<port>\d{1,5}))\b', flags=re.DOTALL)
+
+    async def _pipe(self):
+        headers = dict()
+        headers["User-Agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+        headers["Accept"] = "application/json, text/plain, */*"
+        headers["Accept-Encoding"] = "gzip, deflate"
+        headers["Accept-Language"] = "en-US,en;q=0.9"
+        headers["Origin"] = "https://openproxy.space"
+        headers["Referer"] = "https://openproxy.space/"
+
+        timestamp = int(round(time.time() * 1000))
+        page = await self.get('https://api.openproxy.space/list?skip=0&ts=%s' % timestamp, headers=headers)
+        if not page:
+            return
+
+        jsonData = json.loads(page)
+        codes = list(map(lambda x: x['code'], jsonData))
+
+        if 'SOCKS5' in self.proto:
+            index = 0
+        elif 'SOCKS4' in self.proto:
+            index = 1
+        else:
+            index = 2
+
+        # urls = [
+        #     'https://openproxy.space/list/%s' % path
+        #     for path in codes[index::3]
+        # ]
+        # await self._find_on_pages(urls)
+
+        await self._find_on_page('https://openproxy.space/list/%s' % codes[index])
+
+
 class XroxyHttp(Provider):
     domain = 'www.xroxy.com^http'
 
@@ -599,6 +639,15 @@ PROVIDERS = [
         url='https://www.socks-proxy.net/',
         proto=('SOCKS4'),
     ),  # 300   by Didsoft Ltd.
+    Openproxy_space(
+        proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
+    ),
+    Openproxy_space(
+        proto=('SOCKS4'),
+    ),
+    Openproxy_space(
+        proto=('SOCKS5'),
+    ),
     XroxyHttp(
         proto=('HTTP', 'CONNECT:80', 'HTTPS', 'CONNECT:25'),
     ),
